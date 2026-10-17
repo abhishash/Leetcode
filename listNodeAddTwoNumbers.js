@@ -1,43 +1,42 @@
-function ListNode(val, next = null) {
-    this.val = val;
-    this.next = next;
-}
-
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
 var addTwoNumbers = function (l1, l2) {
-    let current1 = l1;
-    let current2 = l2;
     let carry = 0;
-    let restatingNode = null;
-    let endingNode = null
-    while (current1 != null || current2 != null || carry > 0) {
-        let x = current1.val ?? 0;
-        let y = current2.val ?? 0;
-        let sum = x + y + carry;
+    let current = new ListNode(0);
+    let head = current;
+
+    while (l1 !== null || l2 !== null || carry > 0) {
+        const sum = (l1?.val ?? 0) + (l2?.val ?? 0) + carry;
+        const currentDigit = Math.floor(sum % 10);
         carry = Math.floor(sum / 10);
-        let currentDigit = Math.floor(sum % 10);
+        // New node creation
+        const newNode = {
+            val: currentDigit,
+            next: null
+        };
 
-        if (restatingNode == null) {
-            let firstNode = new ListNode(currentDigit);
-            restatingNode = firstNode;
-            endingNode = firstNode;
-        } else {
-            endingNode.next = new ListNode(currentDigit);
-            endingNode = endingNode.next;
+        current.next = newNode;
+        current = newNode;
+
+        if (l1) {
+            l1 = l1.next;
         }
 
-        if (current1) {
-            current1 = current1.next;
-        }
-
-        if (current2) {
-            current2 = current2.next;
+        if (l2) {
+            l2 = l2.next;
         }
     }
 
-    return restatingNode;
-}
+    return head.next;
 
-const l1 = new ListNode(2, new ListNode(4, new ListNode(8)));
-const l2 = new ListNode(5, new ListNode(6, new ListNode(4)));
-
-console.log(addTwoNumbers(l1, l2));
+};
