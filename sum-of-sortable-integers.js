@@ -3,7 +3,7 @@
  * @return {number}
  */
 
-var sortableIntegers = function(nums) {
+var sortableIntegers = function (nums) {
     const n = nums.length;
     const sorted = [...nums].sort((a, b) => a - b);
     let answer = 0;
@@ -66,4 +66,43 @@ var sortableIntegers = function(nums) {
     return answer;
 };
 
-console.log(sortableIntegers([3, 1, 2, 4]));
+// console.log(sortableIntegers([3, 1, 2, 4]));
+
+
+
+const sortableIntegers1 = (nums) => {
+    const n = nums.length;
+    const sortedArray = [...nums].sort((a, b) => a - b);
+    let ans = [];
+    
+    function isRotation(arr, pattern){
+        const k = arr.length;
+        const lps = new Array(k).fill(0);
+        for (let i = 1; len = 0; i < k ){
+            console.log(i);
+            i++;
+        }
+
+    }
+
+    for (let i = 0; i < n; i++) {
+        let k = nums[i];
+        if (n % k !== 0) {
+            continue;
+        }
+
+        for (let start = 0; start < n; start += k) {
+            // console.log(start, k);
+            const targetedArray = nums.slice(start, start + k);
+            const orginalArray = sortedArray.slice(start, start + k);
+
+            isRotation(targetedArray, orginalArray);
+            // ans.push(targetedArray);
+
+        }
+    }
+    console.log(sortedArray, ans);
+
+}
+
+console.log(sortableIntegers1([3, 1, 2, 4]));
